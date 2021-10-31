@@ -1,4 +1,4 @@
-﻿//================================
+//================================
 //  By: Adsolution
 //================================
 using System;
@@ -271,7 +271,7 @@ namespace RaymapGame {
                 var pb = clone.Gao.GetComponent<PersoBehaviour>();
 
                 //pull it in close
-                if (pb.isLoaded)
+                if (pb.IsLoaded)
                     clone.Gao.transform.position = pos;
 
                 cl = pb.gameObject.AddComponent(persoType) as PersoController;
