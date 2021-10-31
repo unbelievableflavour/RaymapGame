@@ -1,4 +1,4 @@
-﻿//================================
+//================================
 //  By: Adsolution
 //================================
 using System;
@@ -145,15 +145,24 @@ namespace RaymapGame
                         comp.gameObject.layer = 2;
                 }
 
+            List<Waypoint> wps = new List<Waypoint>();
+            // Find Waypoints
+            if (controller.graphManager.waypoints.Count > 0) {
+                foreach (var wp in controller.graphManager.waypoints) {
+                    wps.Add(wp.gameObject.AddComponent<Waypoint>());
+                }
+            }
             // Find Waypoint graphs
-            if (controller.graphManager.transform.childCount > 0)
-            foreach (Transform gr in controller.graphManager.transform.GetChild(0))
-                gr.gameObject.AddComponent<WaypointGraph>();
-
-            // Find isolate Waypoints
-            foreach (Transform w in GameObject.Find("Isolate WayPoints").transform)
-                w.gameObject.AddComponent<Waypoint>();
-
+            if (controller.graphManager.graphs.Count > 0) {
+                foreach (var gr in controller.graphManager.graphs) {
+                    var wpg = gr.gameObject.AddComponent<WaypointGraph>();
+                    wpg.Init();
+                }
+            }
+            // Init Waypoints
+            foreach (var wp in wps) {
+                wp.Init();
+            }
 
             var gameMode = Settings.Mode.Rayman2PC;
 #if UNITY_EDITOR
