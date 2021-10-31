@@ -76,7 +76,8 @@ namespace RaymapGame {
                 foreach (Transform bh in bhvs) {
                     var scrs = new List<ScriptComponent>();
                     foreach (Transform sc in bh) scrs.Add(sc.GetComponent<ScriptComponent>());
-                    scripts.Add(bh.name.Split('\"')[1], scrs.ToArray());
+                    var n = bh.name.Split('\"');
+                    scripts.Add((n.Length > 1 ? n[1] : n[0]), scrs.ToArray());
                 }
 
             // Position and setup
