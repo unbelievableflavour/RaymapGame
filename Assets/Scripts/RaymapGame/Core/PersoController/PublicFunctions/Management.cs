@@ -196,6 +196,12 @@ namespace RaymapGame {
             return r;
         }
 
+        public static ClearPersoCaches()
+        {
+            getPersosCache.Clear();
+            getPersoCache.Clear();
+        }
+
         public P GetClosestPerso<P>(float maxDist) where P : PersoController
             => (P)GetClosestPerso(typeof(P), (p) => DistTo(p) < maxDist);
         public P GetClosestPerso<P>(Func<PersoController, bool> condition = null) where P : PersoController

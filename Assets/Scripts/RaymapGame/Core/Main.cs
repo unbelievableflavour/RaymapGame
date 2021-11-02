@@ -47,6 +47,7 @@ namespace RaymapGame
         public static bool isRom;
         public static GameUI ui;
         void Main_onLoad(object sender, EventArgs e) { onLoad -= Main_onLoad; }
+        public static void ResetSubscriptions() { onLoad = null; }
 
         public static string gameName = "Rayman2";
         public static string lvlName => controller?.loader?.lvlName;
@@ -115,9 +116,16 @@ namespace RaymapGame
                     UnityEditor.Selection.activeObject = ms.hitPerso.gameObject;
             }
 #endif
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                //Reset Raymap
+                MapLoader.Reset();
+                Timer.timers.Clear();
 
-            //if (Input.GetKeyDown(KeyCode.J))
-                //SceneManager.LoadScene(0);
+                //Reset RaymapGame
+                main.ResetRaymapGame();
+                SceneManager.LoadScene(0);
+            }
         }
 
 
@@ -288,6 +296,13 @@ namespace RaymapGame
             if (createPlane) {
                 ResManager.Inst("Test/Plane").transform.position = wldPos;
             }
+        }
+
+        public void ResetRaymapGame() {
+            ResetSubscriptions();
+            PersoController.persos.Clear();
+            PersoController.ClearPersoCaches();
+            Awake();
         }
     }
 }
