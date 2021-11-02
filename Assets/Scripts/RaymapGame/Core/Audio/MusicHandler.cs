@@ -1,4 +1,4 @@
-﻿//================================
+//================================
 //  By: Adsolution
 //================================
 
@@ -106,7 +106,7 @@ namespace RaymapGame {
                 return;
             if (tunes == null)
                 GetTunes();
-            if (!Main.loaded || tunes == null)
+            if (Main.loadState != Main.LoadState.Loaded || tunes == null)
                 return;
             
             foreach (var t in tunes.Where((x) => x.clip == null))
