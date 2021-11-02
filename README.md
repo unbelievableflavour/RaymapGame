@@ -9,3 +9,8 @@ Important: This is an extension to Raymap (<https://github.com/byvar/raymap/>) a
 3. Open the Unity Project.
 4. Open the MapViewer scene.
 5. Add the RaymapGame.prefab to the scene.
+
+## Changing maps ingame
+
+RaymapGame supports switching ingame! The following call will clear all caches for Raymap + RaymapGame and let you switch to Learn_10.
+```Management.ChangeMap("Learn_10")```
