@@ -13,13 +13,17 @@ namespace RaymapGame.Rayman2.Persos {
             hitPoints = 1;
             SetRule("Default");
         }
-
+        
         protected void Rule_Default() {
-            var src = ReceiveProjectiles();
-            if (src != null) {
+            ReceiveProjectiles();
+        }
+        
+        protected override void OnDeath() {
+            SFX("ray2_sfx/Atmosphere/CRASH1").Play();
+            SetVisibility(false);
+            Timers("Die").Start(0.55f, () => {
                 Remove();
-                src.Remove();
-            }
+            });
         }
     }
 }
