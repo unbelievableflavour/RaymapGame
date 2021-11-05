@@ -141,7 +141,21 @@ namespace RaymapGame {
 
 
         void Awake() {
+            // Reset static values
+            start = true;
+            tunes = null;
+            tune = null;
             inst = this;
+            section = -1;
+            trBar = -1;
+            newBar = -1;
+            fading = false;
+            fadeBars = 0f;
+            fadeAction = null;
+            tr = false;
+            tuneIdx = -1;
+            loop = false;
+            // init
             asrc = gameObject.AddComponent<AudioSource>();
             asrc.loop = true;
             asrc.outputAudioMixerGroup = musicMixerGroup;
